@@ -15,7 +15,7 @@ services:
       - my_network
 
   postgres:
-    image: postgres:15
+    image: postgres:13
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
