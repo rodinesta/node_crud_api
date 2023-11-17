@@ -18,14 +18,14 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - 
-        name: Docker Compose Build A Service & Push Action
-        uses: 1-1is0/docker-compose-build-push@publish
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      -
+        name: Build and push
+        uses: docker/build-push-action@v5
         with:
-          image: rodinesta/node_crud_api
-          registry: https://registry.hub.docker.com/v2
-          composeFile: ./docker-compose.yml
-          tags: v1, latest
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-          serviceName: node_app, postgres
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/node_app:latest
