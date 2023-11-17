@@ -23,7 +23,9 @@ jobs:
         uses: 1-1is0/docker-compose-build-push@publish
         with:
           image: rodinesta/node_crud_api
-          registry: https://registry.hub.docker.com/v2/
+          registry: https://registry.hub.docker.com/v2
+          composeFile: ./docker-compose.yml
+          tags: v1, latest
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-            
+          serviceName: node_app, postgres
